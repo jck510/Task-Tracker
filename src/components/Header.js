@@ -1,11 +1,10 @@
-import PropTypes from 'prop-types';
-import Button from './Buttons/Button';
+import AddButton from './Buttons/Button';
 
-const Header = ({ title, onAdd, showAdd }) => {
+const Header = ({ onAdd, showAdd }) => {
   return (
     <header className='header'>
-      <h1>{title}</h1>
-      <Button
+      <h1>{'Task Manager'}</h1>
+      <AddButton
         color={showAdd ? 'red' : 'green'}
         text={showAdd ? 'Close' : 'Add'}
         onClick={onAdd}
@@ -13,20 +12,5 @@ const Header = ({ title, onAdd, showAdd }) => {
     </header>
   );
 };
-
-Header.defaultProps = {
-  title: 'Task Tracker',
-};
-
-Header.propTypes = {
-  title: PropTypes.string.isRequired,
-};
-
-/*
-const headingStyle = {
-    color:'red',
-    backgroundColor:'black'
-}
-*/
 
 export default Header;

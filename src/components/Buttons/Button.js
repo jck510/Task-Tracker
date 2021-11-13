@@ -1,4 +1,4 @@
-const Button = ({ color = 'steelblue', text, onClick }) => {
+const AddButton = ({ color = 'steelblue', text, onClick }) => {
   return (
     <button
       onClick={onClick}
@@ -12,4 +12,4 @@ const Button = ({ color = 'steelblue', text, onClick }) => {
   );
 };
 
-export default Button;
+export default AddButton;
