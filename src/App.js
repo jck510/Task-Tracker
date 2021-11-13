@@ -3,8 +3,6 @@ import Header from './components/Header';
 import Task from './components/Task';
 import AddTaskForm from './components/AddTask';
 import Button from './components/interactive/Button';
-import Modal from 'react-modal';
-import { AiOutlineCloseCircle } from 'react-icons/ai';
 
 import {
   toggleReminder,
@@ -21,18 +19,10 @@ const App = () => {
   const [currentEditTask, setCurrentEditTask] = useState(null);
   const [isInEditingState, setIsInEditingState] = useState(false);
 
-  let subtitle;
-  const [modalIsOpen, setIsOpen] = useState(false);
-
   useEffect(() => {
     const tasksList = JSON.parse(localStorage.getItem('tasksArray')) || [];
     setTasks(tasksList);
   }, []);
-
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    subtitle.style.color = '#f00';
-  }
 
   return (
     <div className='container'>
@@ -65,57 +55,7 @@ const App = () => {
                   setIsInEditingState={setIsInEditingState}
                   setTasks={setTasks}
                   tasks={tasks}
-                  setModalOpen={setIsOpen}
                 />
-                <Modal
-                  isOpen={modalIsOpen}
-                  onAfterOpen={afterOpenModal}
-                  onRequestClose={() => setIsOpen(false)}
-                  className='modal-styles'
-                  ariaHideApp={false}
-                >
-                  <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Edit Task</h2>
-                  <AiOutlineCloseCircle
-                    onClick={() => setIsOpen(false)}
-                    className='exit-modal-icon'
-                  />
-                  <form className='add-form'>
-                    {' '}
-                    {/*onSubmit={(e) => onSubmit(e)} */}
-                    <div className='form-control'>
-                      <label>Task</label>
-                      <input
-                        type='text'
-                        name='text'
-                        placeholder='Add Task'
-                        // value={inputState.text}
-                        // onChange={(e) => handleAddTask(e)}
-                      />
-                    </div>
-                    <div className='form-control'>
-                      <label>Day & Time</label>
-                      <input
-                        type='datetime-local'
-                        name='day'
-                        placeholder='Add Day & Time'
-                        // value={inputState.day}
-                        // onChange={(e) => handleAddTask(e)}
-                      />
-                    </div>
-                    <input
-                      type='submit'
-                      value='Set Reminder'
-                      className='btn btn-block rem-btn'
-                      // onSubmit={(e) => onSubmit(e)}
-                    />
-                    <input
-                      type='submit'
-                      value='Confirm'
-                      className='btn btn-block'
-                      // onSubmit={(e) => onSubmit(e)}
-                    />
-                  </form>
-                </Modal>
               </>
             );
           })
