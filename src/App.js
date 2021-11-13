@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Header from './components/Header';
-import Tasks from './components/Tasks';
-import AddTask from './components/AddTask';
+import Task from './components/Task';
+import AddTaskForm from './components/AddTask';
 
 import {
   toggleReminder,
@@ -28,20 +28,23 @@ const App = () => {
         onAdd={() => setShowAddTask(!showAddTask)}
         showAdd={showAddTask}
       />
-      {showAddTask && <AddTask onAdd={addTask} setTasks={setTasks} />}
-      {tasks.length > 0 ? (
-        <Tasks
-          tasks={tasks}
-          onDelete={deleteTask}
-          onToggle={toggleReminder}
-          onEdit={editTask}
-          setCurrentEditTask={setCurrentEditTask}
-          setIsInEditingState={setIsInEditingState}
-          setTasks={setTasks}
-        />
-      ) : (
-        'No Tasks to Show'
-      )}
+      {showAddTask && <AddTaskForm onAdd={addTask} setTasks={setTasks} />}
+      {tasks.length > 0
+        ? tasks.map((task) => {
+            return (
+              <Task
+                task={task}
+                onDelete={deleteTask}
+                onToggle={toggleReminder}
+                onEdit={editTask}
+                setCurrentEditTask={setCurrentEditTask}
+                setIsInEditingState={setIsInEditingState}
+                setTasks={setTasks}
+                tasks={tasks}
+              />
+            );
+          })
+        : 'No Tasks to Show'}
     </div>
   );
 };

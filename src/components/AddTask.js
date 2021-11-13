@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const AddTask = ({ onAdd, setTasks }) => {
+const AddTaskForm = ({ onAdd, setTasks }) => {
   const [inputState, setInputState] = useState({
     text: '',
     day: '',
@@ -69,4 +69,4 @@ const AddTask = ({ onAdd, setTasks }) => {
   );
 };
 
-export default AddTask;
+export default AddTaskForm;
