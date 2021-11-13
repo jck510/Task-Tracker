@@ -17,7 +17,15 @@ const Task = ({ task, onDelete, onToggle, onEdit, tasks, setTasks }) => {
 
   const editModalProcessor = () => {
     setIsOpen(!modalIsOpen);
-    console.log(task);
+  };
+
+  const handleEditTask = (e) => {
+    setCurrentEditTask((prevState) => {
+      return {
+        ...prevState,
+        [e.target.name]: e.target.value,
+      };
+    });
   };
 
   return (
@@ -65,8 +73,8 @@ const Task = ({ task, onDelete, onToggle, onEdit, tasks, setTasks }) => {
               type='text'
               name='text'
               placeholder='Edit Task'
-              value={currentEditTask.task}
-              // onChange={(e) => handleAddTask(e)}
+              value={currentEditTask.text}
+              onChange={(e) => handleEditTask(e)}
             />
           </div>
           <div className='form-control'>
@@ -76,14 +84,23 @@ const Task = ({ task, onDelete, onToggle, onEdit, tasks, setTasks }) => {
               name='day'
               placeholder='Add Day & Time'
               value={currentEditTask.day}
-              // onChange={(e) => handleAddTask(e)}
+              onChange={(e) => handleEditTask(e)}
             />
           </div>
-          {!currentEditTask.reminder && (
+          {currentEditTask.reminder ? (
             <div
               type='submit'
               className='btn btn-block rem-btn'
-              // onClick={(e) => setCurrentEditTask(e)}
+              style={{ width: '11.5rem' }}
+              onClick={(e) => handleEditTask(e)}
+            >
+              Remove Reminder
+            </div>
+          ) : (
+            <div
+              type='submit'
+              className='btn btn-block rem-btn'
+              onClick={(e) => handleEditTask(e)}
             >
               Set Reminder
             </div>

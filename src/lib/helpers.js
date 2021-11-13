@@ -22,8 +22,8 @@ export const deleteTask = (id, tasks, setTasks) => {
 // Edit Task
 export const editTask = (task, setCurrentEditTask, setIsInEditingState) => {
   console.log(task);
-  setCurrentEditTask(task);
-  setIsInEditingState(true);
+  // setCurrentEditTask(task);
+  // setIsInEditingState(true);
 };
 
 // Add Task
