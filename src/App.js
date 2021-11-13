@@ -15,9 +15,6 @@ import {
 const App = () => {
   const [tasks, setTasks] = useState([]);
   const [showAddTask, setShowAddTask] = useState(false);
-  const [showEditTask, setShowEditTask] = useState(false);
-  const [currentEditTask, setCurrentEditTask] = useState(null);
-  const [isInEditingState, setIsInEditingState] = useState(false);
 
   useEffect(() => {
     const tasksList = JSON.parse(localStorage.getItem('tasksArray')) || [];
@@ -51,8 +48,6 @@ const App = () => {
                   onDelete={deleteTask}
                   onToggle={toggleReminder}
                   onEdit={editTask}
-                  setCurrentEditTask={setCurrentEditTask}
-                  setIsInEditingState={setIsInEditingState}
                   setTasks={setTasks}
                   tasks={tasks}
                 />

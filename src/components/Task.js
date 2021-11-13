@@ -5,22 +5,25 @@ import { AiOutlineCloseCircle } from 'react-icons/ai';
 
 import { setDate } from '../lib/helpers';
 
-const Task = ({
-  task,
-  onDelete,
-  onToggle,
-  onEdit,
-  setCurrentEditTask,
-  setIsInEditingState,
-  tasks,
-  setTasks,
-}) => {
+const Task = ({ task, onDelete, onToggle, onEdit, tasks, setTasks }) => {
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [showEditTask, setShowEditTask] = useState(false);
+  const [currentEditTask, setCurrentEditTask] = useState({
+    text: task.text,
+    day: task.day,
+    reminder: task.reminder,
+  });
+  const [isInEditingState, setIsInEditingState] = useState(false);
+
+  const editModalProcessor = () => {
+    setIsOpen(!modalIsOpen);
+    console.log(task);
+  };
 
   return (
     <div
       className={`task ${task.reminder ? 'reminder' : ''}`}
-      onDoubleClick={() => onToggle(task.id)}
+      // onDoubleClick={() => onToggle(task.id)}
     >
       <h3>
         {task.text}
@@ -44,7 +47,7 @@ const Task = ({
       <Modal
         isOpen={modalIsOpen}
         // onAfterOpen={afterOpenModal}
-        onRequestClose={() => setIsOpen(false)}
+        onRequestClose={() => editModalProcessor()}
         className='modal-styles'
         ariaHideApp={false}
       >
@@ -62,7 +65,7 @@ const Task = ({
               type='text'
               name='text'
               placeholder='Edit Task'
-              // value={inputState.text}
+              value={currentEditTask.task}
               // onChange={(e) => handleAddTask(e)}
             />
           </div>
@@ -72,17 +75,19 @@ const Task = ({
               type='datetime-local'
               name='day'
               placeholder='Add Day & Time'
-              // value={inputState.day}
+              value={currentEditTask.day}
               // onChange={(e) => handleAddTask(e)}
             />
           </div>
-          <div
-            type='submit'
-            className='btn btn-block rem-btn'
-            // onSubmit={(e) => onSubmit(e)}
-          >
-            Set Reminder
-          </div>
+          {!currentEditTask.reminder && (
+            <div
+              type='submit'
+              className='btn btn-block rem-btn'
+              // onClick={(e) => setCurrentEditTask(e)}
+            >
+              Set Reminder
+            </div>
+          )}
           <input
             type='submit'
             value='Confirm'
