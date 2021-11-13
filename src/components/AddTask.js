@@ -7,11 +7,6 @@ const AddTaskForm = ({ onAdd, setTasks }) => {
     reminder: false,
   });
 
-  // const handleEditTask = (e) => {
-  //   const { name, value } = e.target;
-  //   setInputState((prevState) => ({ [name]: value }));
-  // };
-
   const handleAddTask = (e) => {
     setInputState((prevState) => {
       return {

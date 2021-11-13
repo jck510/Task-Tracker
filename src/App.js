@@ -4,6 +4,7 @@ import Task from './components/Task';
 import AddTaskForm from './components/AddTask';
 import Button from './components/interactive/Button';
 import Modal from 'react-modal';
+import { AiOutlineCloseCircle } from 'react-icons/ai';
 
 import {
   toggleReminder,
@@ -71,17 +72,48 @@ const App = () => {
                   onAfterOpen={afterOpenModal}
                   onRequestClose={() => setIsOpen(false)}
                   className='modal-styles'
-                  contentLabel='Example Modal'
                   ariaHideApp={false}
                 >
                   <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Edit Task</h2>
-                  <button onClick={() => setIsOpen(false)}>X</button>
-                  <form>
-                    <input />
-                    <button>tab navigation</button>
-                    <button>stays</button>
-                    <button>inside</button>
-                    <button>the modal</button>
+                  <AiOutlineCloseCircle
+                    onClick={() => setIsOpen(false)}
+                    className='exit-modal-icon'
+                  />
+                  <form className='add-form'>
+                    {' '}
+                    {/*onSubmit={(e) => onSubmit(e)} */}
+                    <div className='form-control'>
+                      <label>Task</label>
+                      <input
+                        type='text'
+                        name='text'
+                        placeholder='Add Task'
+                        // value={inputState.text}
+                        // onChange={(e) => handleAddTask(e)}
+                      />
+                    </div>
+                    <div className='form-control'>
+                      <label>Day & Time</label>
+                      <input
+                        type='datetime-local'
+                        name='day'
+                        placeholder='Add Day & Time'
+                        // value={inputState.day}
+                        // onChange={(e) => handleAddTask(e)}
+                      />
+                    </div>
+                    <input
+                      type='submit'
+                      value='Set Reminder'
+                      className='btn btn-block rem-btn'
+                      // onSubmit={(e) => onSubmit(e)}
+                    />
+                    <input
+                      type='submit'
+                      value='Confirm'
+                      className='btn btn-block'
+                      // onSubmit={(e) => onSubmit(e)}
+                    />
                   </form>
                 </Modal>
               </>

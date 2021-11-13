@@ -119,9 +119,39 @@ footer {
   bottom: auto;
   margin-right: -50%;
   transform: translate(-50%, -50%);
-  width: 30rem;
+  width: 40rem;
   height: 30rem;
   background-color: rgb(244, 238, 238);
   border-radius: 5px;
   padding: 1rem;
+  color: #000;
+}
+
+.modal-styles h2 {
+  color: #000 !important;
+  font-size: 2rem;
+}
+
+.exit-modal-icon {
+  position: absolute;
+  font-size: 2rem !important;
+  top: 1rem;
+  right: 1rem;
+}
+
+.exit-modal-icon:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.rem-btn {
+  width: 9rem;
+  background-color: rgb(134, 139, 206);
+  margin-bottom: 2rem;
+}
+
+.rem-btn:hover {
+  background-color: rgba(134, 139, 206, 0.728);
+  transform: scale(1.01);
+  transition: 0.1s ease-in-out;
 }
