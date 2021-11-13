@@ -5,8 +5,8 @@ const Header = ({ onAdd, showAdd }) => {
     <header className='header'>
       <h1>{'Task Manager'}</h1>
       <Button
-        color={showAdd ? 'red' : 'green'}
-        text={showAdd ? 'Close' : 'Add'}
+        color={showAdd ? 'black' : 'steelblue'}
+        text={showAdd ? 'Close' : 'Add Task'}
         onClick={onAdd}
       />
     </header>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { FaTimes, FaPen } from 'react-icons/fa';
+import { RiEditBoxLine } from 'react-icons/ri';
+
 import Modal from 'react-modal';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 
@@ -41,22 +42,27 @@ const Task = ({
   };
 
   return (
-    <div className={`task ${task.reminder ? 'reminder' : ''}`}>
+    <div className='task'>
+      {task.reminder && (
+        <div className={`${task.reminder ? 'reminder' : ''}`}></div>
+      )}
       <h3>
         {task.text}
         <div>
-          <FaPen
-            style={{ color: 'green', cursor: 'pointer' }}
+          <RiEditBoxLine
             className='icon-div'
             onClick={() => {
               setIsOpen(true);
               onEdit(task, setCurrentEditTask);
             }}
           />
-          <FaTimes
+          <AiOutlineCloseCircle
+            className='exit-modal-icon-sm'
             style={{ color: 'red', cursor: 'pointer', marginLeft: '12px' }}
-            onClick={() => onDelete(task.id, tasks, setTasks)}
-            className='icon-div'
+            onClick={() => {
+              setIsOpen(false);
+              onDelete(task.id, tasks, setTasks);
+            }}
           />
         </div>
       </h3>
