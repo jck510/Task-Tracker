@@ -5,15 +5,21 @@ import { AiOutlineCloseCircle } from 'react-icons/ai';
 
 import { setDate } from '../lib/helpers';
 
-const Task = ({ task, onDelete, onToggle, onEdit, tasks, setTasks }) => {
+const Task = ({
+  task,
+  onDelete,
+  onEdit,
+  tasks,
+  setTasks,
+  editTaskContents,
+}) => {
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [showEditTask, setShowEditTask] = useState(false);
   const [currentEditTask, setCurrentEditTask] = useState({
+    id: task.id,
     text: task.text,
     day: task.day,
     reminder: task.reminder,
   });
-  const [isInEditingState, setIsInEditingState] = useState(false);
 
   const editModalProcessor = () => {
     setIsOpen(!modalIsOpen);
@@ -28,11 +34,14 @@ const Task = ({ task, onDelete, onToggle, onEdit, tasks, setTasks }) => {
     });
   };
 
+  const submitEditChanges = (e) => {
+    e.preventDefault();
+    editTaskContents(currentEditTask);
+    setIsOpen(!modalIsOpen);
+  };
+
   return (
-    <div
-      className={`task ${task.reminder ? 'reminder' : ''}`}
-      // onDoubleClick={() => onToggle(task.id)}
-    >
+    <div className={`task ${task.reminder ? 'reminder' : ''}`}>
       <h3>
         {task.text}
         <div>
@@ -41,7 +50,7 @@ const Task = ({ task, onDelete, onToggle, onEdit, tasks, setTasks }) => {
             className='icon-div'
             onClick={() => {
               setIsOpen(true);
-              onEdit(task, setCurrentEditTask, setIsInEditingState);
+              onEdit(task, setCurrentEditTask);
             }}
           />
           <FaTimes
@@ -64,9 +73,7 @@ const Task = ({ task, onDelete, onToggle, onEdit, tasks, setTasks }) => {
           onClick={() => setIsOpen(false)}
           className='exit-modal-icon'
         />
-        <form className='add-form'>
-          {' '}
-          {/*onSubmit={(e) => onSubmit(e)} */}
+        <form className='add-form' onSubmit={(e) => submitEditChanges(e)}>
           <div className='form-control'>
             <label>Edit Task</label>
             <input
@@ -91,8 +98,14 @@ const Task = ({ task, onDelete, onToggle, onEdit, tasks, setTasks }) => {
             <div
               type='submit'
               className='btn btn-block rem-btn'
-              style={{ width: '11.5rem' }}
-              onClick={(e) => handleEditTask(e)}
+              onClick={(e) =>
+                setCurrentEditTask((prevState) => {
+                  return {
+                    ...prevState,
+                    reminder: !prevState.reminder,
+                  };
+                })
+              }
             >
               Remove Reminder
             </div>
@@ -100,17 +113,24 @@ const Task = ({ task, onDelete, onToggle, onEdit, tasks, setTasks }) => {
             <div
               type='submit'
               className='btn btn-block rem-btn'
-              onClick={(e) => handleEditTask(e)}
+              onClick={(e) =>
+                setCurrentEditTask((prevState) => {
+                  return {
+                    ...prevState,
+                    reminder: !prevState.reminder,
+                  };
+                })
+              }
             >
               Set Reminder
             </div>
           )}
-          <input
-            type='submit'
-            value='Confirm'
+          <button
             className='btn btn-block'
-            // onSubmit={(e) => onSubmit(e)}
-          />
+            onSubmit={(e) => submitEditChanges(e)}
+          >
+            Confirm
+          </button>
         </form>
       </Modal>
     </div>

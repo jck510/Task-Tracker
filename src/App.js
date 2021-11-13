@@ -21,6 +21,17 @@ const App = () => {
     setTasks(tasksList);
   }, []);
 
+  const editTaskContents = (newTaskContents) => {
+    const editedNewTasks = tasks.map((task) => {
+      if (task.id === newTaskContents.id) {
+        return newTaskContents;
+      }
+      return task;
+    });
+    setTasks(editedNewTasks);
+    localStorage.setItem('tasksArray', JSON.stringify(editedNewTasks));
+  };
+
   return (
     <div className='container'>
       <Header
@@ -37,21 +48,19 @@ const App = () => {
           onClick={() => clearAllTasks(setTasks)}
         />
       )}
-
-      {/* Show All Tasks */}
       {tasks.length > 0
         ? tasks.map((task) => {
             return (
-              <>
-                <Task
-                  task={task}
-                  onDelete={deleteTask}
-                  onToggle={toggleReminder}
-                  onEdit={editTask}
-                  setTasks={setTasks}
-                  tasks={tasks}
-                />
-              </>
+              <Task
+                key={task.id}
+                task={task}
+                onDelete={deleteTask}
+                onToggle={toggleReminder}
+                onEdit={editTask}
+                setTasks={setTasks}
+                tasks={tasks}
+                editTaskContents={editTaskContents}
+              />
             );
           })
         : 'No Tasks to Show'}

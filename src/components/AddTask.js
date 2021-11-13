@@ -19,6 +19,11 @@ const AddTaskForm = ({ onAdd, setTasks }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     onAdd(inputState, setTasks);
+    setInputState({
+      text: '',
+      day: '',
+      reminder: false,
+    });
   };
 
   return (
