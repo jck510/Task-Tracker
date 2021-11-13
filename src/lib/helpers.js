@@ -35,3 +35,8 @@ export const addTask = (task, setTasks) => {
   localStorage.setItem('tasksArray', JSON.stringify(oldTasks));
   setTasks(oldTasks);
 };
+
+export const clearAllTasks = (setTasks) => {
+  setTasks([]);
+  localStorage.removeItem('tasksArray');
+};

@@ -2,12 +2,14 @@ import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Task from './components/Task';
 import AddTaskForm from './components/AddTask';
+import Button from './components/interactive/Button';
 
 import {
   toggleReminder,
   deleteTask,
   addTask,
   editTask,
+  clearAllTasks,
 } from './lib/helpers.js';
 
 const App = () => {
@@ -29,19 +31,32 @@ const App = () => {
         showAdd={showAddTask}
       />
       {showAddTask && <AddTaskForm onAdd={addTask} setTasks={setTasks} />}
+
+      {/* A Clear All Tasks Feature */}
+      {tasks.length > 0 && (
+        <Button
+          color={'black'}
+          text={'Clear Tasks'}
+          onClick={() => clearAllTasks(setTasks)}
+        />
+      )}
+
+      {/* Show All Tasks */}
       {tasks.length > 0
         ? tasks.map((task) => {
             return (
-              <Task
-                task={task}
-                onDelete={deleteTask}
-                onToggle={toggleReminder}
-                onEdit={editTask}
-                setCurrentEditTask={setCurrentEditTask}
-                setIsInEditingState={setIsInEditingState}
-                setTasks={setTasks}
-                tasks={tasks}
-              />
+              <>
+                <Task
+                  task={task}
+                  onDelete={deleteTask}
+                  onToggle={toggleReminder}
+                  onEdit={editTask}
+                  setCurrentEditTask={setCurrentEditTask}
+                  setIsInEditingState={setIsInEditingState}
+                  setTasks={setTasks}
+                  tasks={tasks}
+                />
+              </>
             );
           })
         : 'No Tasks to Show'}
