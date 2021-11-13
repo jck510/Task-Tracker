@@ -1,10 +1,10 @@
-import AddButton from './Buttons/Button';
+import Button from './interactive/Button';
 
 const Header = ({ onAdd, showAdd }) => {
   return (
     <header className='header'>
       <h1>{'Task Manager'}</h1>
-      <AddButton
+      <Button
         color={showAdd ? 'red' : 'green'}
         text={showAdd ? 'Close' : 'Add'}
         onClick={onAdd}

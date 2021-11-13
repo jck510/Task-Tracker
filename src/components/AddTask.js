@@ -1,21 +1,29 @@
 import { useState } from 'react';
 
-const AddTask = ({ onAdd }) => {
+const AddTask = ({ onAdd, setTasks }) => {
   const [inputState, setInputState] = useState({
     text: '',
     day: '',
     reminder: false,
   });
 
-  const handleEditTask = (e) => {
-    const { name, value } = e.target;
+  // const handleEditTask = (e) => {
+  //   const { name, value } = e.target;
+  //   setInputState((prevState) => ({ [name]: value }));
+  // };
 
-    setInputState((prevState) => ({ [name]: value }));
+  const handleAddTask = (e) => {
+    setInputState((prevState) => {
+      return {
+        ...prevState,
+        [e.target.name]: e.target.value,
+      };
+    });
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    onAdd(inputState);
+    onAdd(inputState, setTasks);
   };
 
   return (
@@ -27,7 +35,7 @@ const AddTask = ({ onAdd }) => {
           name='text'
           placeholder='Add Task'
           value={inputState.text}
-          onChange={(e) => handleEditTask(e)}
+          onChange={(e) => handleAddTask(e)}
         />
       </div>
       <div className='form-control'>
@@ -37,7 +45,7 @@ const AddTask = ({ onAdd }) => {
           name='day'
           placeholder='Add Day & Time'
           value={inputState.day}
-          onChange={(e) => handleEditTask(e)}
+          onChange={(e) => handleAddTask(e)}
         />
       </div>
       <div className='form-control form-control-check'>
@@ -47,7 +55,7 @@ const AddTask = ({ onAdd }) => {
           name='reminder'
           checked={inputState.reminder}
           value={inputState.reminder}
-          onChange={(e) => handleEditTask(e)}
+          onChange={(e) => handleAddTask(e)}
         />
       </div>
 

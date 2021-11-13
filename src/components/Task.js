@@ -1,6 +1,15 @@
 import { FaTimes, FaPen } from 'react-icons/fa';
 
-const Task = ({ task, onDelete, onToggle, onEdit }) => {
+const Task = ({
+  task,
+  onDelete,
+  onToggle,
+  onEdit,
+  setCurrentEditTask,
+  setIsInEditingState,
+  tasks,
+  setTasks,
+}) => {
   let tempString = '';
   let timeString = '';
   let month = '';
@@ -112,11 +121,13 @@ const Task = ({ task, onDelete, onToggle, onEdit }) => {
           <FaPen
             style={{ color: 'green', cursor: 'pointer' }}
             className='icon-div'
-            onClick={() => onEdit(task)}
+            onClick={() =>
+              onEdit(task, setCurrentEditTask, setIsInEditingState)
+            }
           />
           <FaTimes
             style={{ color: 'red', cursor: 'pointer', marginLeft: '12px' }}
-            onClick={() => onDelete(task.id)}
+            onClick={() => onDelete(task.id, tasks, setTasks)}
             className='icon-div'
           />
         </div>
