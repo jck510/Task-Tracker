@@ -11,6 +11,7 @@ const Task = ({
   setIsInEditingState,
   tasks,
   setTasks,
+  setModalOpen,
 }) => {
   return (
     <div
@@ -23,9 +24,10 @@ const Task = ({
           <FaPen
             style={{ color: 'green', cursor: 'pointer' }}
             className='icon-div'
-            onClick={() =>
-              onEdit(task, setCurrentEditTask, setIsInEditingState)
-            }
+            onClick={() => {
+              setModalOpen(true);
+              onEdit(task, setCurrentEditTask, setIsInEditingState);
+            }}
           />
           <FaTimes
             style={{ color: 'red', cursor: 'pointer', marginLeft: '12px' }}

@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Task from './components/Task';
 import AddTaskForm from './components/AddTask';
 import Button from './components/interactive/Button';
+import Modal from 'react-modal';
 
 import {
   toggleReminder,
@@ -19,10 +20,18 @@ const App = () => {
   const [currentEditTask, setCurrentEditTask] = useState(null);
   const [isInEditingState, setIsInEditingState] = useState(false);
 
+  let subtitle;
+  const [modalIsOpen, setIsOpen] = useState(false);
+
   useEffect(() => {
     const tasksList = JSON.parse(localStorage.getItem('tasksArray')) || [];
     setTasks(tasksList);
   }, []);
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = '#f00';
+  }
 
   return (
     <div className='container'>
@@ -55,7 +64,26 @@ const App = () => {
                   setIsInEditingState={setIsInEditingState}
                   setTasks={setTasks}
                   tasks={tasks}
+                  setModalOpen={setIsOpen}
                 />
+                <Modal
+                  isOpen={modalIsOpen}
+                  onAfterOpen={afterOpenModal}
+                  onRequestClose={() => setIsOpen(false)}
+                  className='modal-styles'
+                  contentLabel='Example Modal'
+                  ariaHideApp={false}
+                >
+                  <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Edit Task</h2>
+                  <button onClick={() => setIsOpen(false)}>X</button>
+                  <form>
+                    <input />
+                    <button>tab navigation</button>
+                    <button>stays</button>
+                    <button>inside</button>
+                    <button>the modal</button>
+                  </form>
+                </Modal>
               </>
             );
           })
