@@ -14,7 +14,7 @@ body {
   max-width: 800px;
   margin: 30px auto;
   overflow: auto;
-  min-height: 300px;
+  min-height: 400px;
   border: 1px solid steelblue;
   padding: 30px;
   border-radius: 5px;
@@ -53,6 +53,12 @@ body {
 .btn-block {
   display: block;
   width: 100%;
+}
+
+.btn:hover,
+.btn-block:hover {
+  cursor: pointer;
+  opacity: 0.7;
 }
 
 .task {
@@ -132,18 +138,36 @@ footer {
   text-align: center;
 }
 
-.flag-container {
-  width: 6rem;
+.save-tsk {
+  position: absolute;
+  width: 10rem;
+  top: 70%;
+}
+
+.empty-tasks-btn {
+  position: absolute;
+  top: 2.7rem;
+  font-size: 1.5rem;
+  right: 10rem;
+}
+
+.empty-tasks-btn:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.customize-container {
+  width: 10rem;
   position: absolute;
   right: 2rem;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   height: 3rem;
-  top: 48%;
+  top: 70%;
 }
 
-.flag-container .flag-icn-adder {
+.customize-container .flag-icn-adder {
   font-size: 1.5rem;
 }
 
@@ -218,6 +242,16 @@ footer {
   font-size: 1.4rem;
 }
 .flag-icn:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.priority-btn {
+  font-size: 1.5rem;
+  color: rgb(134, 139, 206);
+}
+
+.priority-btn:hover {
   cursor: pointer;
   opacity: 0.7;
 }

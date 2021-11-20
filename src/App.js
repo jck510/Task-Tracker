@@ -4,6 +4,8 @@ import Task from './components/Task';
 import AddTaskForm from './components/AddTask';
 import Button from './components/interactive/Button';
 
+import { FaTrash } from 'react-icons/fa';
+
 import {
   toggleReminder,
   deleteTask,
@@ -39,31 +41,33 @@ const App = () => {
         showAdd={showAddTask}
       />
       {showAddTask && <AddTaskForm onAdd={addTask} setTasks={setTasks} />}
-
-      {/* A Clear All Tasks Feature */}
       {tasks.length > 0 && (
-        <Button
+        <FaTrash
+          className='empty-tasks-btn'
           color={'black'}
           text={'Clear Tasks'}
           onClick={() => clearAllTasks(setTasks)}
         />
       )}
-      {tasks.length > 0
-        ? tasks.map((task) => {
-            return (
-              <Task
-                key={task.id}
-                task={task}
-                onDelete={deleteTask}
-                onToggle={toggleReminder}
-                onEdit={editTask}
-                setTasks={setTasks}
-                tasks={tasks}
-                editTaskContents={editTaskContents}
-              />
-            );
-          })
-        : 'No Tasks to Show'}
+
+      {tasks.length > 0 ? (
+        tasks.map((task) => {
+          return (
+            <Task
+              key={task.id}
+              task={task}
+              onDelete={deleteTask}
+              onToggle={toggleReminder}
+              onEdit={editTask}
+              setTasks={setTasks}
+              tasks={tasks}
+              editTaskContents={editTaskContents}
+            />
+          );
+        })
+      ) : (
+        <h2>Clean Slate</h2>
+      )}
     </div>
   );
 };

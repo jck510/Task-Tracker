@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { RiFlag2Fill } from 'react-icons/ri';
+import { AiOutlineClockCircle } from 'react-icons/ai';
 
 const AddTaskForm = ({ onAdd, setTasks }) => {
   const [inputState, setInputState] = useState({
@@ -49,17 +50,13 @@ const AddTaskForm = ({ onAdd, setTasks }) => {
           onChange={(e) => handleAddTask(e)}
         />
       </div>
-      <div className='form-control form-control-check'>
-        <label>Set Reminder</label>
-        <input
-          type='checkbox'
+      <div className='customize-container' title='No Priority by Default'>
+        <AiOutlineClockCircle
+          className='priority-btn'
+          onClick={handleAddTask}
           name='reminder'
-          checked={inputState.reminder}
           value={inputState.reminder}
-          onChange={(e) => handleAddTask(e)}
         />
-      </div>
-      <div className='flag-container' title='No Priority by Default'>
         <RiFlag2Fill className='flag-icn-adder' color='#A9333A' />
         <RiFlag2Fill className='flag-icn-adder' color='#FFB344' />
         <RiFlag2Fill className='flag-icn-adder' color='#3DB2FF' />
@@ -68,7 +65,7 @@ const AddTaskForm = ({ onAdd, setTasks }) => {
       <input
         type='submit'
         value='Save Task'
-        className='btn btn-block'
+        className='btn btn-block save-tsk'
         onSubmit={(e) => onSubmit(e)}
       />
     </form>
