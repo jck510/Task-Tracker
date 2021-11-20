@@ -18,6 +18,7 @@ body {
   border: 1px solid steelblue;
   padding: 30px;
   border-radius: 5px;
+  position: relative;
 }
 
 .header {
@@ -129,6 +130,26 @@ body {
 footer {
   margin-top: 30px;
   text-align: center;
+}
+
+.flag-container {
+  width: 6rem;
+  position: absolute;
+  right: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 3rem;
+  top: 48%;
+}
+
+.flag-container .flag-icn-adder {
+  font-size: 1.5rem;
+}
+
+.flag-icn-adder:hover {
+  cursor: pointer;
+  opacity: 0.7;
 }
 
 .modal-styles {

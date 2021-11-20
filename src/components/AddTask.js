@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { RiFlag2Fill } from 'react-icons/ri';
 
 const AddTaskForm = ({ onAdd, setTasks }) => {
   const [inputState, setInputState] = useState({
@@ -57,6 +58,11 @@ const AddTaskForm = ({ onAdd, setTasks }) => {
           value={inputState.reminder}
           onChange={(e) => handleAddTask(e)}
         />
+      </div>
+      <div className='flag-container' title='No Priority by Default'>
+        <RiFlag2Fill className='flag-icn-adder' color='#A9333A' />
+        <RiFlag2Fill className='flag-icn-adder' color='#FFB344' />
+        <RiFlag2Fill className='flag-icn-adder' color='#3DB2FF' />
       </div>
 
       <input
