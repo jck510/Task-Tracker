@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { RiEditBoxLine } from 'react-icons/ri';
+import { RiEditBoxLine, RiFlag2Fill } from 'react-icons/ri';
 
 import Modal from 'react-modal';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
@@ -49,6 +49,7 @@ const Task = ({
       <h3>
         {task.text}
         <div>
+          <RiFlag2Fill className='flag-icn' />
           <RiEditBoxLine
             className='icon-div'
             onClick={() => {
