@@ -42,10 +42,7 @@ const Task = ({
   };
 
   return (
-    <div className='task'>
-      {task.reminder && (
-        <div className={`${task.reminder ? 'reminder' : ''}`}></div>
-      )}
+    <div className={`task ${task?.reminder ? 'reminder-border' : ''}`}>
       <h3>
         {task.text}
         <div>
